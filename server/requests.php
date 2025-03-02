@@ -64,8 +64,31 @@ include('../common/db.php');
         }else{
             echo "Question not added";
         }
-        
+    }
+    elseif(isset($_POST['answer'])){
+        $q_id = $_POST['q_id'];
+        $answer = $_POST['answer'];
+        $user_id = $_SESSION['user']['user_id'];
 
+        $answer = $conn->prepare("INSERT INTO `answers`(`id`, `answer`, `question_id`, `user_id`)
+        VALUES (NULL,'$answer','$q_id','$user_id')");
+
+        $result = $answer->execute();
+        if($result){
+            header("location: /php projects/discuss?q-id=$q_id");
+        }else{
+            echo "Answer not added";
+        }
+    }
+    elseif(isset($_GET['delete'])){
+        $q_id = $_GET['delete'];
+        $query = "DELETE FROM `questions` WHERE `id`=$q_id";
+        $result = $conn->query($query);
+        if($result){
+            header("location: /php projects/discuss");
+        }else{
+            echo "Question not deleted";
+        }
     }
 
 

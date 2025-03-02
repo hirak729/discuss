@@ -26,6 +26,22 @@
         $q_id = $_GET['q-id'];
         include('./client/question-details.php'); 
     }
+    elseif(isset($_GET['cat-id'])){
+        $cat_id = $_GET['cat-id'];
+        include('./client/questions.php');
+
+    }
+    elseif(isset($_GET['u-id'])){
+        $u_id = $_GET['u-id'];
+        include('./client/questions.php');
+    }
+    elseif(isset($_GET['latest'])){
+        include('./client/questions.php');
+    }
+    elseif(isset($_GET['search'])){
+        $search = $_GET['search'];
+        include('./client/questions.php');
+    }
     else{
         include('./client/questions.php');
     }
